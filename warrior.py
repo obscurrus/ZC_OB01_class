@@ -1,4 +1,4 @@
-class Warrior():
+class Warrior:
     def __init__(self, name, power, endurance, color):
         self.name = name
         self.power = power
