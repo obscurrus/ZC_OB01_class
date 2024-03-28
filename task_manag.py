@@ -31,20 +31,28 @@ class TaskManager:
 
 manager = TaskManager()
 
-task1 = Task("Купить молоко", "2023-03-10")
-task2 = Task("Сдать проект", "2023-03-20")
-task3 = Task("Позвонить родителям", "2023-03-15")
+while True:
+    description = input("Введите название задачи (или 'выход' для завершения ввода): ")
+    if description.lower() == "выход":
+        break
+    deadline = input("Введите дедлайн задачи: ")
+    task = Task(description, deadline)
+    manager.add_task(task)
 
-manager.add_task(task1)
-manager.add_task(task2)
-manager.add_task(task3)
+print("Список задач:")
+for i, task in enumerate(manager, start=1):
+    print(f"{i}. {task}")
 
-print("Список текущих задач:")
-for task in manager.get_current_tasks():
-    print(task)
+while True:
+    try:
+        manager.mark_done(int(input("Введите номер выполненной задачи (или букву для выхода): ")) - 1)
+        print("Ваш список задач:")
+        for i, task in enumerate(manager, start=1):
+            print(f"{i}. {task}")
+        continue
+    except:
+        print('Увидимся, жидкий гомо!')
+        break
 
-manager.mark_done(0)
-
-print("Список текущих задач после выполнения задачи:")
-for task in manager.get_current_tasks():
-    print(task)
+# for task in manager.get_current_tasks():
+#    print(task)
