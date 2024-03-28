@@ -1,5 +1,5 @@
 class Warrior():
-    def __init__(self, name, power, endurance, color ):
+    def __init__(self, name, power, endurance, color):
         self.name = name
         self.power = power
         self.endurance = endurance
@@ -24,3 +24,14 @@ class Warrior():
         print(f'Wrs power {self.power}')
         print(f'Wrs endurance {self.endurance}')
         print(f'Wrs color {self.color}')
+
+
+war1 = Warrior(name='Buba', power=76, endurance=54, color='brown')
+war2 = Warrior('Chucha', 25, 50, 'red')
+
+print(war1.endurance)
+war1.sleep()
+print(war1.endurance)
+
+
+war1.info()
