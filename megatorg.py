@@ -36,14 +36,70 @@ for key, value in shops.items():
 print('\nВы прошли всевозможные тестирования и как выживший, приняты на работу нашим товароведом!'
       '\nВыберите магазин соответствующий вашему фетишу и приступайте скорее!\n')
 
-my_shop = None
+shop = None
 
 choice = input(f'Введите номер дома для выбора магазина ')
 
 for variable in shops:
     if choice in variable:
-        my_shop = shops[variable]
+        shop = shops[variable]
         break
 
-print("Отличный выбор! Вы отправляетесь в магазин: ", my_shop.name)
+print("Отличный выбор! Вы отправляетесь в магазин: ", shop.name)
+
+'''начинаем работу товароведа'''
+print("Начинаем работу. Выберите операцию. Для выхода в меню - буква Ы.")
+
+while True:
+    print("1. Разбираем хлам и назначаем цены")
+    print("2. Накосячил? Исправься!")
+    print("3. Раскупили - удали!")
+    print("4. Проверить, чё натыкал")
+    print("5. Я устал. Я ухожу")
+
+    operation = input("Чё делаем? ")
+
+    if operation == "1":
+        while True:
+            item = input("ЧТо продаём? ")
+            price = float(input("Почём? "))
+            for shop in shops.values():
+                shop.add_item(item, price)
+            if input("Ы если закончил: ").lower() == "ы":
+                break
+
+    elif operation == "2":
+        while True:
+            item = input("Что исправляем? ")
+            new_price = float(input("Новая цена: "))
+            for shop in shops.values():
+                shop.upd_price(item, new_price)
+            if input("Ы если закончил: ").lower() == "ы":
+                break
+
+    elif operation == "3":
+        while True:
+            item = input("Что кончилось? ")
+            for shop in shops.values():
+                shop.del_item(item)
+            if input("Ы если закончил: ").lower() == "ы":
+                break
+
+    elif operation == "4":
+        while True:
+            item = input("Введите название товара: ")
+            for shop in shops.values():
+                print(f"Цена товара в {shop.name}: {shop.get_price(item)}")
+            if input("Ы если закончил: ").lower() == "ы":
+                break
+
+    elif operation == "5":
+        print("Слабак ты, жидкий гомо.")
+        break
+
+    elif operation.lower() == "ы":
+        continue
+
+    else:
+        print("Непонял... Чё это было?")
 
