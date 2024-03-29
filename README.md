@@ -4,4 +4,4 @@
 
 ### домашнее задание
 + Менеджер задач: [task_manag.py](task_manag.py)
-+ Магазинер
++ Тренажер товароведа [megatorg.py](megatorg.py)
