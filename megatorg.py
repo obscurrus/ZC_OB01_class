@@ -65,6 +65,8 @@ while True:
             if not item:
                 print("\"Что\" - это что-то, а не пусто!")
                 continue
+            if item.lower() == "ы":
+                break
             try:
                 price = float(input("Почём? "))
             except ValueError:
@@ -72,8 +74,6 @@ while True:
                 continue
             # for shop in shops.values():
             shop.add_item(item, price)
-            if input("Ы если закончил: ").lower() == "ы":
-                break
 
     elif operation == "2":
         while True:
@@ -81,6 +81,8 @@ while True:
             if not item:
                 print("\"Что\" - это что-то, а не пусто!")
                 continue
+            if item.lower() == "ы":
+                break
             try:
                 new_price = float(input("Новая цена: "))
             except ValueError:
@@ -88,8 +90,6 @@ while True:
                 continue
             # for shop in shops.values():
             shop.upd_price(item, new_price)
-            if input("Ы если закончил: ").lower() == "ы":
-                break
 
     elif operation == "3":
         while True:
@@ -97,21 +97,26 @@ while True:
             if not item:
                 print("\"Что\" - это что-то, а не пусто!")
                 continue
+            if item.lower() == "ы":
+                break
             # for shop in shops.values():
             shop.del_item(item)
-            if input("Ы если закончил: ").lower() == "ы":
-                break
 
     elif operation == "4":
         while True:
-            item = input("Введите название товара: ")
-            if not item:
+            item = input("Введите название товара (000 чтобы показать всё): ")
+            if item.lower() == "ы":
+                break
+            if item == "000":
+                print(f'У нас в магазине {shop.name} вы можете купить: ')
+                for key in shop.items:
+                    print(f'{key} за {shop.get_price(key)} р.')
+                continue
+            if item not in shop.items:
                 print("Нету такого")
                 continue
             # for shop in shops.values():
-            print(f"Цена товара в {shop.name}: {shop.get_price(item)}")
-            if input("Ы если закончил: ").lower() == "ы":
-                break
+            print(f"Цена товара в {shop.name}: {shop.get_price(item)} р.")
 
     elif operation == "5":
         print("Слабак ты, жидкий гомо.")
