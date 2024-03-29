@@ -55,41 +55,61 @@ while True:
     print("2. Накосячил? Исправься!")
     print("3. Раскупили - удали!")
     print("4. Проверить, чё натыкал")
-    print("5. Я устал. Я ухожу")
+    print("5. Я устал. Я ухожу (Ы)")
 
     operation = input("Чё делаем? ")
 
     if operation == "1":
         while True:
             item = input("ЧТо продаём? ")
-            price = float(input("Почём? "))
-            for shop in shops.values():
-                shop.add_item(item, price)
+            if not item:
+                print("\"Что\" - это что-то, а не пусто!")
+                continue
+            try:
+                price = float(input("Почём? "))
+            except ValueError:
+                print('цЫфрыыыыы!!')
+                continue
+            # for shop in shops.values():
+            shop.add_item(item, price)
             if input("Ы если закончил: ").lower() == "ы":
                 break
 
     elif operation == "2":
         while True:
             item = input("Что исправляем? ")
-            new_price = float(input("Новая цена: "))
-            for shop in shops.values():
-                shop.upd_price(item, new_price)
+            if not item:
+                print("\"Что\" - это что-то, а не пусто!")
+                continue
+            try:
+                new_price = float(input("Новая цена: "))
+            except ValueError:
+                print('цЫфрыыыыы!!')
+                continue
+            # for shop in shops.values():
+            shop.upd_price(item, new_price)
             if input("Ы если закончил: ").lower() == "ы":
                 break
 
     elif operation == "3":
         while True:
             item = input("Что кончилось? ")
-            for shop in shops.values():
-                shop.del_item(item)
+            if not item:
+                print("\"Что\" - это что-то, а не пусто!")
+                continue
+            # for shop in shops.values():
+            shop.del_item(item)
             if input("Ы если закончил: ").lower() == "ы":
                 break
 
     elif operation == "4":
         while True:
             item = input("Введите название товара: ")
-            for shop in shops.values():
-                print(f"Цена товара в {shop.name}: {shop.get_price(item)}")
+            if not item:
+                print("Нету такого")
+                continue
+            # for shop in shops.values():
+            print(f"Цена товара в {shop.name}: {shop.get_price(item)}")
             if input("Ы если закончил: ").lower() == "ы":
                 break
 
@@ -98,8 +118,8 @@ while True:
         break
 
     elif operation.lower() == "ы":
-        continue
+        print("Ыыыыы...")
+        break
 
     else:
         print("Непонял... Чё это было?")
-
