@@ -5,8 +5,7 @@ class Task:
         self.status = False
 
     def __str__(self):
-        return "{} (дедлайн: {}; статус: {})".format(self.description, self.deadline,
-                                                     "выполнено" if self.status else "не выполнено")
+        return f"{self.description} (дедлайн: {self.deadline}; статус: {"выполнено" if self.status else "не выполнено"})"
 
 
 class TaskManager:
@@ -19,8 +18,8 @@ class TaskManager:
 
     def mark_done(self, task_index):
         task = self.tasks[task_index]
-        task.status = True
         print(f'Задача {task} отмечена выполненной')
+        task.status = True
 
     def get_current_tasks(self):
         return [task for task in self.tasks if not task.status]
